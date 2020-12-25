@@ -6,6 +6,12 @@ const image2 = document.getElementById('image2');
 const image3 = document.getElementById('image3');
 const textBox = document.getElementById('text-box');
 
+// getElementsByClassName and other DOM methods with plural Elements
+// returns html collection like an array.
+const navIcon = document.getElementsByClassName('icon')[0]; 
+
+let isNavBarOpen = false;
+
 // Dark or Light Images
 function imageMode(color) {
   image1.src = `img/undraw_Online_learning_${color}.svg`;
@@ -37,9 +43,6 @@ function switchTheme(event) {
   }
 }
 
-// Event Listener
-toggleSwitch.addEventListener('change', switchTheme);
-
 // Check Local Storage For Theme
 const currentTheme = localStorage.getItem('theme-color');
 if (currentTheme) {
@@ -51,12 +54,25 @@ if (currentTheme) {
   }
 }
 
-/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
-// function myFunction() {
-//   var x = document.querySelector('.icon');
-//   if (x.className === "nav") {
-//     x.className += " responsive";
-//   } else {
-//     x.className = "nav";
-//   }
-// }
+// toggle mobile navBar
+function toggleNavBar() {
+  let navBar = document.getElementsByClassName('nav-bar');
+  if (!isNavBarOpen) {
+    // Here navBar is not an array but a html collection.
+    Array.from(navBar).forEach((nav) => {
+      nav.style.display = 'block';
+    });
+    nav.style.backgroundColor = 'rgb(84, 104, 151, 50%)';
+    isNavBarOpen = true;
+  } else {
+    Array.from(navBar).forEach((nav) => {
+      nav.style.display = 'none';
+    });
+    nav.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+    isNavBarOpen = false;
+  }
+}
+
+// Event Listener
+toggleSwitch.addEventListener('change', switchTheme);
+navIcon.addEventListener('click', toggleNavBar);

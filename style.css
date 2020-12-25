@@ -66,6 +66,10 @@ nav {
   background: rgb(255 255 255 / 50%);
 }
 
+.icon {
+  display: none;
+}
+
 a {
   margin-right: 25px;
   color: var(--primary-color);
@@ -271,7 +275,11 @@ input:checked + .slider::before {
   h2 {font-size: 8vw;}
 
   /* Navigation Bar */
-  .nav-bar {display: none;}
+  .nav-bar {
+    display: none;
+    text-align: left;
+  }
+
   a.icon {
     display: block;
   }
